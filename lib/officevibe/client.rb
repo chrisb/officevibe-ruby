@@ -1,4 +1,11 @@
 # frozen_string_literal: true
+require "faraday_middleware"
+require "date"
+require "officevibe/client_middleware"
+require "active_support/core_ext/module/delegation"
+require "active_support/core_ext/string/inflections"
+require "active_support/core_ext/hash/indifferent_access"
+require "active_support/core_ext/object/to_query"
 
 module Officevibe
   class Client
@@ -15,6 +22,8 @@ module Officevibe
       @auth_token = auth_token
       @connection = Faraday.new url: OFFICEVIBE_URL, headers: headers do |conn|
         conn.response :json, :content_type => /\bjson$/
+        conn.response :raise_error
+        conn.use Officevibe::ClientMiddleware
         conn.adapter Faraday.default_adapter
       end
     end

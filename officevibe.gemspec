@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["chrisb@users.noreply.github.com"]
 
   spec.summary       = "An Officevibe client for Ruby"
-  spec.description   = "An Officevibe client for Ruby"
+  spec.description   = "An Officevibe client for Ruby. Currently supports only a few things."
   spec.homepage      = "https://github.com/chrisb/officevibe-ruby"
   spec.license       = "MIT"
 
@@ -25,8 +25,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday_middleware", "~> 0.13.1"
   spec.add_dependency "json", "~> 2.2.0"
+  spec.add_dependency "activesupport", "~> 5.2"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "pry", "~> 0.12.2"
+  spec.add_development_dependency "awesome_print", "~> 1.8.0"
 end

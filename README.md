@@ -1,8 +1,6 @@
 # Officevibe
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/officevibe`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+An early-stage Ruby client for Officevibe.
 
 ## Installation
 
@@ -20,9 +18,56 @@ Or install it yourself as:
 
     $ gem install officevibe
 
+## Configuration
+
+To get your auth token log in to the Officevibe app and copy the value of the officevibe.auth cookie; this can be done through the Developer Tools of your browser or any number of browser extensions (like EditThisCookie for Chrome).
+
+```ruby
+client = Officevibe::Client.new("<your auth token here>")
+```
+
 ## Usage
 
-TODO: Write usage instructions here
+### Get Manageable Groups
+
+```ruby
+client.get_groups
+# => [
+#     {
+#                   "id" => "12345678-1234-5678-9012-12345678901",
+#         "display_name" => "Accounting Department"
+#     }
+# ]
+```
+
+### Get Engagement Report
+
+```ruby
+client.get_engagement_report("12345678-1234-5678-9012-12345678901")
+# => {"metric_groups"=>
+#   [{"id"=>"MG-4",
+#     "description"=>"The \"Relationship with Manager\" metric represents trust, communication and collaboration between employees and their direct manager.",
+#     "title"=>"Relationship with Manager",
+#     "is_effective"=>true,
+#     "value"=>9.9,
+#     "graph"=>
+#      {"scale_min"=>8.1,
+#       "scale_max"=>9.7,
+#       "zoom"=>6.25,
+#       "offset"=>0.39,
+#       "min_value"=>0.0,
+#       "max_value"=>10.0,
+#       "interval_type"=>3,
+#       "values"=>
+#        [{"date"=>"2019-04-14T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-04-21T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-04-28T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-05-05T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-05-12T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-05-19T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-05-26T00:00:00Z", "value"=>9.9},
+#         {"date"=>"2019-06-02T00:00:00Z", "value"=>9.9},
+```
 
 ## Development
 
@@ -32,7 +77,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/officevibe. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/chrisb/officevibe. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +85,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Officevibe project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/officevibe/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Officevibe project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/chrisb/officevibe/blob/master/CODE_OF_CONDUCT.md).
